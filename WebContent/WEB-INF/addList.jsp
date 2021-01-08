@@ -4,9 +4,7 @@
 <%@ page import="com.javaex.vo.GuestVo" %>
     
 <%
-
-	//request.setCharacterEncoding("UTF-8");
-
+	
 	List<GuestVo> addList = (List<GuestVo>)request.getAttribute("aList");
 	System.out.println("=====list.jsp======");
 	System.out.println(addList);
@@ -19,7 +17,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/guestbook2/gbc" method="get">
+	<form action="/guestbook2/gbc" method="post">
 		<table border="1">
 			<tr>
 				<td>이름</td>
@@ -31,9 +29,11 @@
 				<td colspan="4"><textarea cols="65" rows="10" name="content"></textarea><td>
 			</tr>
 			<tr>
-				<td colspan="4"><button type="submit" name="action" value="add">확인</button>
+				<td colspan="4"><button type="submit">확인</button></td>
 			</tr>
+			
 		</table>
+		<input type="hidden" name="action" value="add">
 		<br>
 	</form>
 	
@@ -41,10 +41,10 @@
 	<%for(int i=0; i<addList.size(); i++){ %>
 		<table border="1">
 			<tr>
-				<td><input type="hidden" name="no" value="<%=addList.get(i).getNo() %>"> <%=addList.get(i).getNo() %> </td>
+				<td> <%=addList.get(i).getNo() %> </td>
 				<td> <%=addList.get(i).getName() %> </td>
 				<td> <%=addList.get(i).getRegDate() %> </td>
-				<td> <button type="button" name="action" value="delete"> 삭제 </button></td>
+				<td><a href="/guestbook2/gbc?action=dForm&no=<%=addList.get(i).getNo() %>">삭제 </a></td>
 			</tr>
 			<tr>
 				<td colspan="5"><%=addList.get(i).getContent() %> </td>
