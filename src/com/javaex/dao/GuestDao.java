@@ -142,8 +142,8 @@ public class GuestDao {
 
 	}
 
-	// **********삭제*************
-	public int guestDelete(int num) {
+	// **********삭제************* id랑 password 대조해서 삭제 하기
+	public int guestDelete(int num, String word) {
 
 		getconnection();
 
@@ -153,12 +153,14 @@ public class GuestDao {
 			String query = "";
 			query += " delete guestbook ";
 			query += " where no = ? ";
-
+			query += " and password = ? ";
+			
 			// System.out.println(query);
 
 			// 쿼리문 만들기
 			pstmt = conn.prepareStatement(query);
 			pstmt.setInt(1, num);
+			pstmt.setString(2, word);
 
 			count = pstmt.executeUpdate();
 
@@ -174,7 +176,7 @@ public class GuestDao {
 		return count;
 	}
 
-	
+	/*	삭제 코드에서 no 값과 password 값을 받아서 일치하는 건 삭제돼서 비밀번호 확인이 따로 필요하지 않음
 	// **********비밀 번호 확인**********
 	public GuestVo getPass(int no, String pass) {
 		GuestVo guestVo = null;
@@ -215,10 +217,12 @@ public class GuestDao {
 
 		close();
 
+		System.out.println(guestVo);
 		return guestVo;
+		
 	}
 	
-	
+	*/
 	/**************비밀번호 정보 가져오기************/
 	public GuestVo getInfo(int no) {
 		GuestVo guestVo = null;
