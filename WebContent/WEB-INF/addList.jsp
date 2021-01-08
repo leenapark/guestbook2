@@ -2,9 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
 <%@ page import="com.javaex.vo.GuestVo" %>
-
     
 <%
+
+	//request.setCharacterEncoding("UTF-8");
 
 	List<GuestVo> addList = (List<GuestVo>)request.getAttribute("aList");
 	System.out.println("=====list.jsp======");
@@ -24,7 +25,7 @@
 				<td>이름</td>
 				<td><input type="text" name="name" value=""></td>
 				<td>비밀번호</td>
-				<td><input type="text" name="password" value=""></td>
+				<td><input type="password" name="password" value=""></td>
 			</tr>
 			<tr>
 				<td colspan="4"><textarea cols="65" rows="10" name="content"></textarea><td>
@@ -32,24 +33,24 @@
 			<tr>
 				<td colspan="4"><button type="submit" name="action" value="add">확인</button>
 			</tr>
-			
 		</table>
+		<br>
 	</form>
 	
 	
-		<%for(int i=0; i<addList.size(); i++){ %>
-	<table border="1">
-		<tr>
-			<td><input type="text" name="no" value="<%=addList.get(i).getNo() %>"> <%=addList.get(i).getNo() %> </td>
-			<td> <%=addList.get(i).getName() %> </td>
-			<td> <%=addList.get(i).getRegDate() %> </td>
-			<td> <input type="button" name="action" value="delete"> 삭제 </td>
-		</tr>
-		<tr>
-			<td colspan="5"><%=addList.get(i).getContent() %></td>
-		</tr>
+	<%for(int i=0; i<addList.size(); i++){ %>
+		<table border="1">
+			<tr>
+				<td><input type="hidden" name="no" value="<%=addList.get(i).getNo() %>"> <%=addList.get(i).getNo() %> </td>
+				<td> <%=addList.get(i).getName() %> </td>
+				<td> <%=addList.get(i).getRegDate() %> </td>
+				<td> <button type="button" name="action" value="delete"> 삭제 </button></td>
+			</tr>
+			<tr>
+				<td colspan="5"><%=addList.get(i).getContent() %> </td>
+			</tr>
+		</table>
 		<br>
-	</table>
 	<%} %>
 	
 </body>

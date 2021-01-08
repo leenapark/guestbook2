@@ -38,7 +38,26 @@ public class GuestBookController extends HttpServlet {
 		*/
 		// action = addlist
 		if ("addlist".equals(action)) {
-			System.out.println("리스트로 저장");
+			System.out.println("리스트");
+			
+			GuestDao guestDao = new GuestDao();
+			
+			// 리스트 만들기
+			List<GuestVo> addList = guestDao.addList();
+			
+			// 데이터 전달
+			// request.setAttribute("별명", 실제 데이터);
+			request.setAttribute("aList", addList);
+			
+			
+			RequestDispatcher rd = request.getRequestDispatcher("./WEB-INF/addList.jsp");
+			rd.forward(request, response);
+			
+			
+			
+		} else if("add".equals(action)) {
+			System.out.println("저장");
+			
 			
 			// 방명록 받은 값 저장하기
 			String name = request.getParameter("name");
@@ -58,10 +77,17 @@ public class GuestBookController extends HttpServlet {
 			// request.setAttribute("별명", 실제 데이터);
 			request.setAttribute("aList", addList);
 			
+			/*
 			RequestDispatcher rd = request.getRequestDispatcher("./WEB-INF/addList.jsp");
 			rd.forward(request, response);
+			*/
+			response.sendRedirect("/phonebook2/pbc?action=addlist");
 			
-		} 
+		} else if("delete".equals(action)) {
+			System.out.println("삭제 처리");
+		}
+		
+		
 	}
 
 
