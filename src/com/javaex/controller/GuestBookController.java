@@ -90,14 +90,35 @@ public class GuestBookController extends HttpServlet {
 			System.out.println("삭제 처리");
 			
 			int num = Integer.parseInt(request.getParameter("no"));
-			
+			String password = request.getParameter("password");
+			//값이 잘 들어오고 있는지 확인
 			System.out.println(num);
+			System.out.println(password);
 			
 			GuestDao guestDao = new GuestDao();
-			guestDao.guestDelete(num);
 			
-			response.sendRedirect("/guestbook2/gbc?action=addlist");
+			GuestVo check = guestDao.getInfo(num);
 			
+			// 기존 패스워드와 비교
+			if(check.getPassword().equals(password)) {
+				// 확인용 메세지 출력
+				System.out.println("삭제");
+				
+				// 리스트 삭제
+				guestDao.guestDelete(num);
+				
+				// 첫 화면으로 돌아가기
+				response.sendRedirect("/guestbook2/gbc?action=addlist");
+
+				
+			} else {
+				
+				System.out.println("비밀번호가 틀렸습니다");
+				
+				response.sendRedirect("/guestbook2/gbc?action=addlist");
+				
+			}
+						
 			
 		}
 		
