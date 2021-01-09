@@ -92,9 +92,8 @@ public class GuestBookController extends HttpServlet {
 
 				
 			} else if (check == 0) {
-
+				// 확인용 메세지 출력
 				System.out.println("비밀번호가 틀렸습니다");
-				
 				
 				WebUtil.redirect(request, response, "/guestbook2/gbc");
 
@@ -103,7 +102,7 @@ public class GuestBookController extends HttpServlet {
 		} else {
 			
 			System.out.println("리스트");
-						
+				
 			// 리스트 만들기
 			List<GuestVo> addList = guestDao.addList();
 			
