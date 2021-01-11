@@ -1,13 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="com.javaex.vo.GuestVo" %>
 
 <%
 
 	int num = Integer.parseInt(request.getParameter("no"));
 	System.out.println(num);		//파라미터로 가져온 정보가 잘 넘어오는지 확인
-	
-	GuestVo guestVo = new GuestVo();	//기존에 있던 패스워드를 가져오기 위해 메모리를 올려줌
-	
+		
 %>
 
 <!DOCTYPE html>
