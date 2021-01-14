@@ -75,13 +75,18 @@ public class GuestBookController extends HttpServlet {
 			 * String password = request.getParameter("password"); //값이 잘 들어오고 있는지 확인
 			 * System.out.println(num);
 			 * System.out.println(password);
-			 */
-			
 			int check = guestDao.guestDelete(Integer.parseInt(request.getParameter("no")),
 					request.getParameter("password"));
 
+			 */
+			
+			
+			int check = guestDao.guestDelete(Integer.parseInt(request.getParameter("no")),
+					request.getParameter("password"));
+			
 			System.out.println(check);
 
+			
 			// 기존 패스워드와 비교
 			if (check == 1) {
 				// 확인용 메세지 출력
@@ -95,7 +100,9 @@ public class GuestBookController extends HttpServlet {
 				// 확인용 메세지 출력
 				System.out.println("비밀번호가 틀렸습니다");
 				
-				WebUtil.redirect(request, response, "/guestbook2/gbc");
+				String result = "fail";
+				
+				WebUtil.redirect(request, response, "/guestbook2/gbc?action=dForm&result=fail&no="+request.getParameter("no"));
 
 			}
 

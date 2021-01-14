@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page import="java.util.List" %>
 <%@ page import="com.javaex.vo.GuestVo" %>
     
@@ -38,20 +38,20 @@
 	</form>
 	
 	
-	<%for(int i=0; i<addList.size(); i++){ %>
-		<table border="1">
+	<c:forEach items="${aList}" var="list" >
+		<table border="1">	
 			<tr>
-				<td> <%=addList.get(i).getNo() %> </td>
-				<td> <%=addList.get(i).getName() %> </td>
-				<td> <%=addList.get(i).getRegDate() %> </td>
-				<td><a href="/guestbook2/gbc?action=dForm&no=<%=addList.get(i).getNo() %>">삭제 </a></td>
+				<td> ${list.no } </td>
+				<td> ${list.name }</td>
+				<td> ${list.regDate }</td>
+				<td><a href="/guestbook2/gbc?action=dForm&no=${list.no }">삭제 </a></td>
 			</tr>
 			<tr>
-				<td colspan="5"><%=addList.get(i).getContent() %> </td>
+				<td colspan="5">${list.content } </td>
 			</tr>
 		</table>
 		<br>
-	<%} %>
-	
+	</c:forEach>
+
 </body>
 </html>

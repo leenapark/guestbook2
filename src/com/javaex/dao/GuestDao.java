@@ -172,7 +172,7 @@ public class GuestDao {
 		}
 
 		close();
-
+		System.out.println(count);
 		return count;
 	}
 
