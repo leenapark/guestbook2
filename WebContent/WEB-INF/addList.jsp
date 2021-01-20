@@ -38,16 +38,16 @@
 	</form>
 	
 	
-	<c:forEach items="${aList}" var="list" >
+	<c:forEach items="${aList}" var="gVo" >
 		<table border="1">	
 			<tr>
-				<td> ${list.no } </td>
-				<td> ${list.name }</td>
-				<td> ${list.regDate }</td>
-				<td><a href="/guestbook2/gbc?action=dForm&no=${list.no }">삭제 </a></td>
+				<td> ${gVo.no } </td>
+				<td> ${gVo.name }</td>
+				<td> ${gVo.regDate }</td>
+				<td><a href="/guestbook2/gbc?action=dForm&no=${gVo.no }">삭제 </a></td>
 			</tr>
 			<tr>
-				<td colspan="5">${list.content } </td>
+				<td colspan="5">${gVo.content } </td>
 			</tr>
 		</table>
 		<br>
