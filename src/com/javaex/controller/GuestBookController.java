@@ -65,7 +65,7 @@ public class GuestBookController extends HttpServlet {
 
 			System.out.println("삭제 폼 처리");
 			
-			WebUtil.forword(request, response, "./WEB-INF/daleteForm.jsp");
+			WebUtil.forword(request, response, "./WEB-INF/deleteForm.jsp");
 
 		} else if ("delete".equals(action)) {
 			System.out.println("삭제 처리");
